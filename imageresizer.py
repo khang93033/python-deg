@@ -5,10 +5,12 @@
 
 from PIL import Image
 
-def resize_image(input_path, output_path, size):
-    """Resize an image."""
+def resize_image(input_path, output_path, size, watermark=None):
     img = Image.open(input_path)
     img_resized = img.resize(size)
+    if watermark:
+        draw = ImageDraw.Draw(img_resized)
+        draw.text((10, 10), watermark, fill=(255, 255, 255))
     img_resized.save(output_path)
     print(f"Resized image saved to {output_path}")
 
