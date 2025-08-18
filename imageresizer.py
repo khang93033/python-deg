@@ -5,14 +5,18 @@
 
 from PIL import Image
 
-def resize_image(input_path, output_path, size, watermark=None):
+def resize_image(input_path, output_path, width=None, height=None):
     img = Image.open(input_path)
-    img_resized = img.resize(size)
-    if watermark:
-        draw = ImageDraw.Draw(img_resized)
-        draw.text((10, 10), watermark, fill=(255, 255, 255))
+    original_width, original_height = img.size
+
+    if width and not height:
+        height = int((original_height / original_width) * width)
+    elif height and not width:
+        width = int((original_width / original_height) * height)
+
+    img_resized = img.resize((width, height))
     img_resized.save(output_path)
     print(f"Resized image saved to {output_path}")
 
 # Example usage
-resize_image("input.jpg", "output.jpg", (300, 300))
+resize_image("input.jpg", "output.jpg", width=300)
