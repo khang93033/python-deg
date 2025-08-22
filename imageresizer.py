@@ -20,3 +20,17 @@ def resize_image(input_path, output_path, width=None, height=None):
 
 # Example usage
 resize_image("input.jpg", "output.jpg", width=300)
+
+from PIL import Image
+import os
+
+def bulk_resize_images(directory, size):
+    for filename in os.listdir(directory):
+        if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+            img = Image.open(os.path.join(directory, filename))
+            img_resized = img.resize(size)
+            img_resized.save(os.path.join(directory, f"resized_{filename}"))
+    print("All images resized successfully.")
+
+# Example usage
+bulk_resize_images("/path/to/images", (300, 300))
