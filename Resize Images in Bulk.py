@@ -1,4 +1,3 @@
-# Repository: python-image-resizer
 # New Feature: Resize multiple images at once
 
 from PIL import Image
