@@ -1,5 +1,3 @@
-### **Repository 9: Image Resizer**
-```python
 # Repository: python-image-resizer
 # Description: Resize images using Pillow.
 
